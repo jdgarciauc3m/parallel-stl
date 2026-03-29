@@ -148,7 +148,7 @@ void invert(std::list<double> & lst) {
 \begin{itemize}
   \item Can be used on containers that allow random access.
 \begin{lstlisting}
-std::vector<double>::iterator find_sorted(std::vector<double> const & vec, double value) {
+std::vector<double>::const_iterator find_sorted(std::vector<double> const & vec, double value) {
   auto first = vec.begin();
   auto last = vec.end();
   while (first < last) {
