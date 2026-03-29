@@ -13,3 +13,32 @@
 \newcommand{\textemph}[1]{%
 {\color{green!40!black}\textbf{#1}}%
 }
+
+\makeatletter
+\newenvironment{explanation}
+{
+  \mode<article>{
+    \noindent
+    \begin{tcolorbox}[
+      colback=blue!8!white,
+      colframe=blue,
+      title={\textbf{Explicación}},
+      breakable,
+      grow to left by=\@totalleftmargin,
+      width=\textwidth,
+      boxrule=0.5pt
+    ]
+  }
+  \mode<presentation>{
+    \setbox0\vbox\bgroup
+  }
+}
+{
+  \mode<article>{
+    \end{tcolorbox}
+  }
+  \mode<presentation>{
+    \egroup
+  }
+}
+\makeatother

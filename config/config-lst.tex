@@ -1,17 +1,15 @@
-\lstdefinestyle{cplusplus}{
+\lstdefinestyle{cppstyle}{
   language=C++,
-  identifierstyle=\itshape,
+  columns=fullflexible,
+  identifierstyle=\color{blue},
   belowcaptionskip=1\baselineskip,
   breaklines=true,
   xleftmargin=\parindent,
   showstringspaces=false,
   keywordstyle=\bfseries\color{green!40!black},
   commentstyle=\itshape\color{purple!40!black},
-  identifierstyle=\color{blue},
-  stringstyle=\color{brown},
+  stringstyle=\color{orange},
   directivestyle=\bfseries\color{green!40!black},
-  columns=fullflexible,
-  keepspaces=true,
   inputencoding=utf8,
   extendedchars=true,
   morekeywords=[1]{_Pragma,constexpr,consteval,nullptr,alignof,alignas,decltype,override,final,noexcept,deprecated,thread_local,co_await,co_return,co_yield,fallthrough,nodiscard},
@@ -27,35 +25,21 @@
     {ñ}{{\~n}}{1}
     {€}{{\euro}}{1}
 }
-
 \mode<presentation>{
 \lstset{
-  style=cplusplus,
+  style=cppstyle,
   basicstyle=\scriptsize,
 }
 }
-
 \mode<article>{
 \lstset{
-  style=cplusplus,
+  style=cppstyle,
   basicstyle=\small,
 }
 }
 
-\newcommand{\cppkey}[1]{%
-{\color{green!40!black}\textbf{#1}}%
-}
-
-\newcommand{\cppid}[1]{%
-{\color{blue}\textbf{#1}}%
-}
-
-\newcommand{\cppstr}[1]{%
-{\color{brown}\textbf{#1}}%
-}
-
 \NewDocumentCommand{\cppcode}{v}{%
-    \lstinline[style=cplusplus,basicstyle=\bfseries]|#1|%
+    \lstinline[style=cppstyle,basicstyle=\bfseries]|#1|%
 }
 
 \lstdefinestyle{terminal}{
@@ -66,4 +50,3 @@
   columns=fullflexible,
   backgroundcolor=\color{yellow!20},
 }
-
