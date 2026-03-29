@@ -151,11 +151,11 @@ double invert(std::list<double> const & lst) {
 std::vector<double>::iterator find_sorted(std::vector<double> const & vec, double value) {
   auto first = vec.begin();
   auto last = vec.end();
-  while (first <= last) {
-    auto mid = first + (last - first) / 2;
+  while (first < last) {
+    auto mid = std::midpoint(first, last);
     if (*mid == value) { return mid; }
     if (*mid < value) { first = mid + 1; }
-    if (*mid > value) { last = mid - 1; }
+    else { last = mid; }
   }
   return vec.end();
 }
