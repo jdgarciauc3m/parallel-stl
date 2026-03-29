@@ -1,0 +1,4 @@
+# include $(PARALGO_ITERATOR_DIR)/Makefile.mk
+
+$(FINAL_PARALGO_PDF): $(PARALGO_PARTS) $(CONFIG_PARTS) | $(FINAL_DIR)
+	$(LATEXMK) -jobname=$(subst /,-,$(<D)) $(PARALGO_DIR)/slides
