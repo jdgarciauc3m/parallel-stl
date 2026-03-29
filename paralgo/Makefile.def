@@ -2,7 +2,7 @@ PARALGO_DIR=paralgo
 PARALGO_PARTS= \
 	$(PARALGO_DIR)/*.tex
 
-# include $(PARALGO_DIR)/iterator/Makefile.def
+include $(PARALGO_DIR)/stl/Makefile.def
 
 GUIDE_PARTS += $(PARALGO_PARTS)
 

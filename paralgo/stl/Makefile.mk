@@ -1,0 +1,2 @@
+$(FINAL_PARALGO_STL_PDF): $(PARALGO_STL_PARTS) $(CONFIG_PARTS)
+	$(LATEXMK) -jobname=$(subst /,-,$(<D)) $(PARALGO_STL_DIR)/slides
