@@ -115,8 +115,8 @@ std::find_if(lst.begin(), lst.end(), [&](double x) { n++; return x>max; });
       \item Can be explicitly specified.
     \end{itemize}
 \begin{lstlisting}
-std::find(lst.begin(), lst.end(), [](double x) { return x>0; });
-std::find(lst.begin(), lst.end(), ([](double x) -> bool { return x>0; });
+std::find_if(lst.begin(), lst.end(), [](double x) { return x>0; });
+std::find_if(lst.begin(), lst.end(), [](double x) -> bool { return x>0; });
 \end{lstlisting}
 \end{itemize}
 \end{frame}
