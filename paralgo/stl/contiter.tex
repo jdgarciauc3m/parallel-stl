@@ -124,10 +124,10 @@ double add(std::forward_list<double> const & lst) {
 \begin{itemize}
   \item Can be used on containers that allow traversal in both directions.
 \begin{lstlisting}
-double invert(std::list<double> const & lst) {
+void invert(std::list<double> & lst) {
   auto first = lst.begin();
   auto last = lst.end();
-  auto len = std::distance(first,last) - 1; // o lst::size()-1
+  auto len = std::distance(first,last) - 1; // or lst::size()-1
   while (len>0) {
     std::swap(*first++, *--last);
     len -= 2;
