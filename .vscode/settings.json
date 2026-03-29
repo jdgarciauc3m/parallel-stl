@@ -22,5 +22,5 @@
             ]
         }
     ],
-    "latex-workshop.latex.outDir": "./final"
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/final"
 }
