@@ -152,7 +152,8 @@ std::vector<double>::iterator find_sorted(std::vector<double> const & vec, doubl
   auto first = vec.begin();
   auto last = vec.end();
   while (first < last) {
-    auto mid = std::midpoint(first, last);
+    auto dist = std::distance(first, last);
+    auto mid = std::next(first, std::midpoint(0, dist));
     if (*mid == value) { return mid; }
     if (*mid < value) { first = mid + 1; }
     else { last = mid; }
