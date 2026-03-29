@@ -1,0 +1,13 @@
+GUIDE_BASE=guide
+GUIDE_DIR=$(GUIDE_BASE)
+
+GUIDE_PARTS += \
+    metadata.tex \
+    guide/*.tex \
+    bib/*.bib \
+
+GUIDE_OUT=guide-parallel-cpp
+
+GUIDE_PDF=$(GUIDE_OUT).pdf
+
+GUIDE_FINAL_PDF=$(FINAL_DIR)/$(GUIDE_PDF)
