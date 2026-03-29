@@ -1,0 +1,26 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "make",
+            "command": "make",
+            "args": [
+                "-C",
+                "%WORKSPACE_FOLDER%",
+                "-j",
+                "6",
+                "-f",
+                "Makefile"
+            ],
+            "env": {}
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "Run Makefile",
+            "tools": [
+                "make"
+            ]
+        }
+    ],
+    "latex-workshop.latex.outDir": "./final"
+}
