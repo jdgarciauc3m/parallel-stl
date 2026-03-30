@@ -1,0 +1,50 @@
+\subsection{Parallel algorithms}
+
+\begin{frame}[t,fragile]{Algorithms and execution policy}
+\begin{itemize}
+  \item Many algorithms accept an \textmark{execution policy}:
+\begin{lstlisting}
+std::vector<double> v = get_values();
+auto n1 = std::count_if(v.begin(), v.end(), [](double x) { return x>0; });
+auto n2 = std::count_if(std::execution::seq, v.begin(), v.end(), [](double x) { return x>0; });
+auto n3 = std::count_if(std::execution::par, v.begin(), v.end(), [](double x) { return x>0; });
+\end{lstlisting}
+
+  \mode<presentation>{\vfill\pause}
+  \item Counting values that satisfy a predicate with \cppcode{count_if()}:
+\begin{lstlisting}
+#include <vector>
+#include <execution>
+#include "image.hpp"
+
+int main() {
+  std::vector<image> v = load_images("img.dat");
+  auto n = std::count_if(std::execution::par, v.begin(), v.end(), 
+      [](image const & im) { return not im.is_valid(); });
+  std::println("Invalid images = {}", n);
+}
+\end{lstlisting}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Execution policies}
+\begin{itemize}
+  \item \cppcode{std::execution::seq}:
+    \begin{itemize}
+      \item Runs in a single thread.
+    \end{itemize}
+  \item \cppcode{std::execution::par}:
+    \begin{itemize}
+      \item Runs in several threads without vectorization.
+    \end{itemize}
+  \item \cppcode{std::execution::par_unseq}:
+    \begin{itemize}
+      \item Runs in several threads with vectorization.
+    \end{itemize}
+  \item \cppcode{std::execution::unseq}:
+    \begin{itemize}
+      \item Runs in a single thread with vectorization.
+    \end{itemize}
+\end{itemize}
+\end{frame}
