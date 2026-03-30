@@ -13,8 +13,10 @@ auto n3 = std::count_if(std::execution::par, v.begin(), v.end(), [](double x) { 
   \mode<presentation>{\vfill\pause}
   \item Counting values that satisfy a predicate with \cppcode{count_if()}:
 \begin{lstlisting}
-#include <vector>
+#include <algorithm>
 #include <execution>
+#include <print>
+#include <vector>
 #include "image.hpp"
 
 int main() {
