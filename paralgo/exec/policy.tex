@@ -32,19 +32,19 @@ int main() {
 \begin{itemize}
   \item \cppcode{std::execution::seq}:
     \begin{itemize}
-      \item Runs in a single thread.
+      \item Execution is sequenced as if on a single thread (no parallelism or vectorization assumed).
     \end{itemize}
   \item \cppcode{std::execution::par}:
     \begin{itemize}
-      \item Runs in several threads without vectorization.
+      \item May execute iterations in parallel, but each iteration is sequential (no vectorization assumed).
     \end{itemize}
   \item \cppcode{std::execution::par_unseq}:
     \begin{itemize}
-      \item Runs in several threads with vectorization.
+      \item May execute iterations in parallel and unsequenced; operations may be vectorized.
     \end{itemize}
   \item \cppcode{std::execution::unseq}:
     \begin{itemize}
-      \item Runs in a single thread with vectorization.
+      \item Executes unsequenced within a single thread context; operations may be vectorized.
     \end{itemize}
 \end{itemize}
 \end{frame}
