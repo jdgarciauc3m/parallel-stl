@@ -3,6 +3,7 @@ PARALGO_PARTS= \
 	$(PARALGO_DIR)/*.tex
 
 include $(PARALGO_DIR)/stl/Makefile.def
+include $(PARALGO_DIR)/exec/Makefile.def
 
 GUIDE_PARTS += $(PARALGO_PARTS)
 
