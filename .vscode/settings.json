@@ -22,5 +22,24 @@
             ]
         }
     ],
-    "latex-workshop.latex.outDir": "./final"
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/final",
+    "files.associations": {
+        "*.tex": "latex"
+    },
+    "[latex]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 100,
+        "editor.rulers": [
+            100
+        ]
+    },
+    "[tex]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 100,
+        "editor.rulers": [
+            100
+        ]
+    },
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.build.enableMagicComments": true
 }
