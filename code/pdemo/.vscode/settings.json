@@ -1,0 +1,5 @@
+{
+  "cmake.useCMakePresets": "always",
+  "cmake.configurePreset": "GCC",
+  "cmake.buildPreset": "GCC"
+}

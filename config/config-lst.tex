@@ -25,16 +25,22 @@
     {ñ}{{\~n}}{1}
     {€}{{\euro}}{1}
 }
+\newcommand{\codigoresaltado}[1]{%
+  {\color{red!80!black}\textbf{#1}}%
+}
+
 \mode<presentation>{
 \lstset{
   style=cppstyle,
   basicstyle=\scriptsize,
+  moredelim={[is][\codigoresaltado]{@}{@}},
 }
 }
 \mode<article>{
 \lstset{
   style=cppstyle,
   basicstyle=\small,
+  moredelim={[is][\codigoresaltado]{@}{@}},
 }
 }
 
