@@ -33,8 +33,7 @@ size_t is_new_word(unsigned char c1, unsigned char c2) {
     for (size_t i = 1; i < text.size(); ++i) {
       if (is_new_word(text[i - 1], text[i]) != 0) { ++result; }
     }
-    if (std::isalpha(text[0]) != 0) { ++result; }
-    return result;
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 \end{lstlisting}
 \end{block}
@@ -60,7 +59,7 @@ size_t is_new_word(unsigned char c1, unsigned char c2) {
         0ZU,
         std::plus{}, 
         is_new_word);
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 \end{lstlisting}
 \end{block}
@@ -81,7 +80,7 @@ size_t is_new_word(unsigned char c1, unsigned char c2) {
         0ZU, 
         std::plus{},
         is_new_word);
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 \end{lstlisting}
 \end{block}
@@ -109,7 +108,7 @@ size_t is_new_word(unsigned char c1, unsigned char c2) {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
     });
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 \end{lstlisting}
 \end{block}
@@ -137,7 +136,7 @@ size_t is_new_word(unsigned char c1, unsigned char c2) {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
     });
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 \end{lstlisting}
 \end{block}

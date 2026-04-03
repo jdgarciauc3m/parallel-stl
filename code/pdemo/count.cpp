@@ -29,7 +29,7 @@ namespace {
     for (size_t i = 1; i < text.size(); ++i) {
       if (is_new_word(text[i - 1], text[i]) != 0) { ++result; }
     }
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 
   size_t count_classic_stl(std::string_view text) {
@@ -37,7 +37,7 @@ namespace {
     auto result =
         std::transform_reduce(std::begin(text), std::prev(std::end(text)),
                               std::next(std::begin(text)), 0ZU, std::plus {}, is_new_word);
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 
   size_t count_parstl(std::string_view text) {
@@ -45,7 +45,7 @@ namespace {
     auto result =
         std::transform_reduce(std::execution::par_unseq, std::begin(text), std::prev(std::end(text)),
                               std::next(std::begin(text)), 0ZU, std::plus {}, is_new_word);
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 
   size_t count_ranges(std::string_view text) {
@@ -57,7 +57,7 @@ namespace {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
     });
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 
   size_t count_pranges(std::string_view text) {
@@ -71,7 +71,7 @@ namespace {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
     });
-    return result + std::isalpha(text[0]);
+    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
   }
 
   auto run_test(auto count_fun, std::string_view text) {
