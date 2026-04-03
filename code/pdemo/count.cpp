@@ -75,7 +75,7 @@ namespace {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
     });
-    return result + static_cast<size_t>(is_letter(text[0]) != 0);
+    return result + is_letter(text[0]);
   }
 
   auto run_test(auto count_fun, std::string_view text) {
