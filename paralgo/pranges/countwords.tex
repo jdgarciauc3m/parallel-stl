@@ -13,8 +13,7 @@
 \begin{block}{Checking for a new word}
 \begin{lstlisting}
 size_t is_new_word(unsigned char c1, unsigned char c2) {
-  bool result = not bool(std::isalpha(c1)) and bool(std::isalpha(c2));
-  return static_cast<size_t>(result);
+    return static_cast<std::size_t>((std::isalpha(c1) == 0) and (std::isalpha(c2) != 0));
 }
 \end{lstlisting}
 \end{block}
