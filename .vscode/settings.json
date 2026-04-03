@@ -41,6 +41,5 @@
         ]
     },
     "latex-workshop.latex.autoBuild.run": "never",
-    "latex-workshop.latex.build.enableMagicComments": true,
-    "cmake.ignoreCMakeListsMissing": true
+    "latex-workshop.latex.build.enableMagicComments": true
 }
