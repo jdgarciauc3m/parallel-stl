@@ -19,8 +19,12 @@ namespace {
     return {std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>()};
   }
 
-  size_t is_new_word(unsigned char c1, unsigned char c2) {
-    return static_cast<std::size_t>((std::isalpha(c1) == 0) and (std::isalpha(c2) != 0));
+  size_t is_letter(char c) {
+    return static_cast<std::size_t>(std::isalpha(static_cast<int>(c)) != 0);
+  }
+
+  size_t is_new_word(char c1, char c2) {
+    return static_cast<std::size_t>((is_letter(c1) == 0) and (is_letter(c2) != 0));
   }
 
   size_t count_classic(std::string_view text) {
@@ -29,7 +33,7 @@ namespace {
     for (size_t i = 1; i < text.size(); ++i) {
       if (is_new_word(text[i - 1], text[i]) != 0) { ++result; }
     }
-    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
+    return result + is_letter(text[0]);
   }
 
   size_t count_classic_stl(std::string_view text) {
@@ -37,7 +41,7 @@ namespace {
     auto result =
         std::transform_reduce(std::begin(text), std::prev(std::end(text)),
                               std::next(std::begin(text)), 0ZU, std::plus {}, is_new_word);
-    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
+    return result + is_letter(text[0]);
   }
 
   size_t count_parstl(std::string_view text) {
@@ -45,7 +49,7 @@ namespace {
     auto result =
         std::transform_reduce(std::execution::par_unseq, std::begin(text), std::prev(std::end(text)),
                               std::next(std::begin(text)), 0ZU, std::plus {}, is_new_word);
-    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
+    return result + is_letter(text[0]);
   }
 
   size_t count_ranges(std::string_view text) {
@@ -57,7 +61,7 @@ namespace {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
     });
-    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
+    return result + is_letter(text[0]);
   }
 
   size_t count_pranges(std::string_view text) {
@@ -71,7 +75,7 @@ namespace {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
     });
-    return result + static_cast<size_t>(std::isalpha(text[0]) != 0);
+    return result + static_cast<size_t>(is_letter(text[0]) != 0);
   }
 
   auto run_test(auto count_fun, std::string_view text) {
