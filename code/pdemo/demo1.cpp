@@ -42,7 +42,7 @@ namespace {
     std::println("Time taken to find the first value with square greater than 100'000'000.0-1: {}",
                  duration);
     if (result != compute.end()) {
-      std::println("First value  with square greaterthan 100'000'000.0-1: {}", std::get<0>(*result));
+      std::println("First value  with square greater than 100'000'000.0-1: {}", std::get<0>(*result));
     } else {
       std::println("No value greater than 100'000'000.0-1 found.");
     }
