@@ -20,7 +20,7 @@ namespace {
   }
 
   size_t is_letter(char c) {
-    return static_cast<std::size_t>(std::isalpha(static_cast<int>(c)) != 0);
+    return static_cast<std::size_t>(std::isalpha(static_cast<int>(static_cast<unsigned char>(c))) != 0);
   }
 
   size_t is_new_word(char c1, char c2) {
