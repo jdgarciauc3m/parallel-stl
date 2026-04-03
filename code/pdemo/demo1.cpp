@@ -78,12 +78,12 @@ namespace {
                                [](auto x) { return std::get<1>(x) > 100'000'000.0 - 1; });
     auto t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1);
-    std::println("Time taken to find the first value with square greater than 100'000'000.0-1: {}",
+    std::println("Time taken to find the first value with square greater than 100'000'000.0 - 1: {}",
                  duration);
     if (result != compute.end()) {
-      std::println("First value with square greater than 100'000'000.0-1: {}", std::get<0>(*result));
+      std::println("First value with square greater than 100'000'000.0 - 1: {}", std::get<0>(*result));
     } else {
-      std::println("No value greater than 100'000'000.0-1 found.");
+      std::println("No value greater than 100'000'000.0 - 1 found.");
     }
     return duration.count();
   }
