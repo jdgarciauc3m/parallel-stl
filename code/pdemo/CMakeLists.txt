@@ -13,7 +13,9 @@ find_package(oneDPL REQUIRED)
 find_package(TBB REQUIRED)
 
 add_executable(demo1 demo1.cpp)
+add_executable(count count.cpp)
 
 # 4. Link the oneDPL and TBB targets
 # Note: oneDPL is a header-only library, but the target handles include paths
 target_link_libraries(demo1 oneDPL TBB::tbb)
+target_link_libraries(count oneDPL TBB::tbb)

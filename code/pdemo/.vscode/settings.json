@@ -1,5 +1,9 @@
 {
   "cmake.useCMakePresets": "always",
   "cmake.configurePreset": "GCC",
-  "cmake.buildPreset": "GCC"
+  "cmake.buildPreset": "GCC",
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/out/build/GCC",
+    "--clang-tidy"
+  ]
 }
