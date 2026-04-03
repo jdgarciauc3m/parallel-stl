@@ -4,6 +4,7 @@
 #include <print>
 #include <random>
 #include <ranges>
+#include <tuple>
 #include <vector>
 
 #include <tbb/tbb.h>
