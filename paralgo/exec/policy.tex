@@ -63,8 +63,6 @@ int main() {
 
   \mode<presentation>{\vfill\pause}
   \item An algorithm may still throw \cppcode{std::bad_alloc} if memory allocation fails, even when using a parallel execution policy.
-  
- 
   \mode<presentation>{\vfill\pause}
   \item \textmark{Rationale}: Parallel algorithms may execute work on multiple threads or in vectorized/unsequenced contexts, and the execution-policy overloads do not support propagating exceptions from user code to the caller.
     \begin{itemize}
