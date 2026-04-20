@@ -13,6 +13,7 @@ VERSION_PARTS= \
 	$(FINAL_DIR)/version.tex
 
 include paralgo/Makefile.def
+include parrng/Makefile.def
 
 include guide/Makefile.def
 
@@ -38,5 +39,6 @@ slides: $(ALL_SLIDES_FINAL_PDF)
 guide: $(GUIDE_FINAL_PDF)
 
 include $(PARALGO_DIR)/Makefile.mk
+include $(PARRNG_DIR)/Makefile.mk
 
 include $(GUIDE_DIR)/Makefile.mk

@@ -1,0 +1,124 @@
+\subsection{Differences with existing algorithms}
+
+\begin{frame}[t,fragile]{Execution policy parameter}
+\begin{itemize}
+
+  \item The execution policy parameter can be used with:
+     \begin{itemize}
+        \item Iterator based algorithms.
+        \item Range based algorithms.
+    \end{itemize}
+    
+  \mode<presentation>{\vfill\pause}
+  \item New iterator based parallel algorithms with updated interfaces.
+
+\begin{lstlisting}
+ranges::unary_transform_result<I, O>
+ranges::transform(Ep&& exec, I first, S last, O result, OutS result_last,
+                  F op, Proj proj = {});
+\end{lstlisting}
+
+  \begin{itemize}
+    \item \cppcode{Ep}: Execution policy.
+    \item \cppcode{I}, \cppcode{S}: Input iterator and sentinel.
+    \item \cppcode{O}, \cppcode{OutS}: Output iterator and sentinel.
+    \item \cppcode{F}: Unary operation.
+    \item \cppcode{Proj}: Projection (optional).
+  \end{itemize}
+  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Execution policy and ranges}
+\begin{itemize}
+    \item New range based parallel algorithms with updated interfaces.
+
+\begin{lstlisting}
+ranges::unary_transform_result<borrowed_iterator_t<R>, borrowed_iterator_t<OutR>>
+ranges::transform(Ep&& exec, R&& r, OutR&& result_r, F op, Proj proj = {});
+\end{lstlisting}
+
+  \begin{itemize}
+    \item \cppcode{Ep}: Execution policy.
+    \item \cppcode{R}: Input range.
+    \item \cppcode{OutR}: Output range.
+    \item \cppcode{F}: Unary operation.
+    \item \cppcode{Proj}: Projection (optional).
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Parallel algorithms require random access}
+\begin{itemize}
+    \item Iterator based parallel algorithms require random access iterators.
+      \begin{itemize}
+        \item Both input and output iterators must be random access.
+      \end{itemize}
+
+    \item Range based parallel algorithms require random access ranges.
+      \begin{itemize}
+        \item Both input and output ranges must be random access.
+      \end{itemize}
+
+    \mode<presentation>{\vfill\pause}
+    \item \textmark{Consequences}:
+      \begin{itemize}
+        \item Cannot be used with input, forward, or bidirectional iterators/ranges.
+        \item Cannot be used with output iterators/ranges that are not random access.
+        \item Cannot be used with some views (e.g., \cppcode{std::views::filter}).
+      \end{itemize}
+
+    \mode<presentation>{\vfill\pause}
+    \item \textmark{Why?}:
+      \begin{itemize}
+        \item Fast division of work into chunks.
+        \item Random access allows for efficient partitioning and load balancing.
+      \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Parallel algorithms require bounded ranges}
+\begin{itemize}
+  \item Iterator based parallel algorithms require sized sentinels.
+    \begin{itemize}
+      \item The distance between the input iterator and sentinel must be computable in constant time.
+      \item The distance between the output iterator and sentinel must be computable in constant time.
+    \end{itemize}
+
+  \item Range based parallel algorithms require sized ranges.
+    \begin{itemize}
+      \item The size of the input range must be computable in constant time.
+      \item The size of the output range must be computable in constant time.
+    \end{itemize}
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Consequences}:
+    \begin{itemize}
+      \item Cannot be used with ranges that do not have a known size.
+      \item Cannot be used with some views (e.g., \cppcode{std::views::filter}).
+      \item When different sizes are involved processing stops when the end of the shorter range is reached.
+    \end{itemize}
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Why?}:
+    \begin{itemize}
+        \item Efficiently divide work into chunks.
+        \item Fixes safety problems with out of range access.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Fixing a pending issue: output ranges}
+\begin{itemize}
+  \item Output is specified by a pair of iterators or a range.
+\end{itemize}
+  
+\begin{lstlisting}
+ranges::unary_transform_result<I, O>
+ranges::transform(Ep&& exec, I first, S last, O result, @OutS result_last@,
+                  F op, Proj proj = {});
+
+ranges::unary_transform_result<borrowed_iterator_t<R>, borrowed_iterator_t<OutR>>
+ranges::transform(Ep&& exec, R&& r, @OutR&& result_r@, F op, Proj proj = {});
+\end{lstlisting}
+\end{frame}
