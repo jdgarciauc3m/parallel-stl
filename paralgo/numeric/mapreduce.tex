@@ -1,0 +1,53 @@
+\subsection{The map-reduce pattern}
+
+\begin{frame}[t,fragile]{The map-reduce pattern}
+  \begin{itemize}
+    \item Map-reduce is a common pattern for parallel algorithms.
+    \item It consists of two steps:
+      \begin{itemize}
+        \item \textmark{Map}: apply a function to each element of a sequence (or pairs of elements).
+        \item \textmark{Reduce}: combine the results of the mapping using an associative operation.
+      \end{itemize}
+
+    \mode<presentation>{\vfill\pause}
+    \item \textmark{Variants}:
+      \begin{itemize}
+        \item \textgood{Unary map-reduce}: map a unary function and reduce with a binary operation.
+\begin{lstlisting}
+T transform_reduce(f, l, init, binary_comb_op, unary_map_op)    
+T transform_reduce(ex, f, l, init, binary_comb_op, unary_map_op)    
+\end{lstlisting}
+
+        \mode<presentation>{\vfill\pause}
+        \item \textgood{Binary map-reduce}: map a binary function on pairs of elements and reduce with a binary operation.
+\begin{lstlisting}
+T transform_reduce(f1, l1, f2, init)
+T transform_reduce(ex, f1, l1, f2, init)
+T transform_reduce(f1, l1, f2, init, binary_comb_op, binary_map_op)
+T transform_reduce(ex, f1, l1, f2, init, binary_comb_op, binary_map_op) 
+\end{lstlisting}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Adding squares of numbers}
+
+\begin{block}{Map-Reduce}
+\begin{lstlisting}
+auto add_squares_par(std::vector<int> const & vec) {
+    return std::transform_reduce(std::execution::par, vec.begin(), vec.end(), 0, 
+    [](int acc, int x) {
+      return acc + x;
+    },
+    [](int x) {
+      return x*x;
+    });
+}
+\end{lstlisting}
+\end{block}
+
+\begin{itemize}
+  \item \textgood{Solution}: The new combination operation is now associative, so the result is deterministic and can be parallelized.
+\end{itemize}
+
+\end{frame}

@@ -1,0 +1,74 @@
+\subsection{Prefix sum operations}
+
+\begin{frame}[t,fragile]{Prefix sum operations}
+\begin{itemize}
+  \item \textgood{Prefix sum} operations are a family of algorithms that compute the cumulative sums of a sequence of values.
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Definition}: Given a sequence of values \cppcode{[x1, x2, ..., xn]} and a binary operation \cppcode{op}, the prefix sum of the sequence is defined as:
+    \begin{itemize}
+      \item \textgood{Inclusive scan}:\\
+      \cppcode{[x1, x1 op x2, x1 op (x2 op x3), ..., x1 op (x2 op ... op xn)]}
+      \item \textgood{Exclusive scan}:\\
+      \cppcode{[init, x1, (x1 op x2), ((x1 op x2) op x3), ..., ((x1 op x2) op ... op xn-1)]}
+    \end{itemize}
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Properties}:
+    \begin{itemize}
+      \item The binary operation \cppcode{op} must be associative.
+      \item The prefix sum can be computed in parallel using a tree-based algorithm.
+      \item Partial operations are non-commutative, so the order of operations matters.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Inclusive scan}
+\begin{itemize}
+  \item \textgood{Inclusive scan} computes the cumulative sums including the current element.
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Generalized interface}:
+\begin{lstlisting}
+I inclusive_scan(f, l, out_it, binary_cobine_op, init);
+I inclusive_scan(ex, f, l, out_it, binary_cobine_op, init);
+\end{lstlisting}
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Initial value} defaulted to \cppcode{0}:
+\begin{lstlisting}
+I inclusive_scan(f, l, out_it, binary_cobine_op);
+I inclusive_scan(ex, f, l, out_it, binary_cobine_op);
+\end{lstlisting}
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Combine operation} defaulted to \cppcode{std::plus<>}:
+\begin{lstlisting}
+I inclusive_scan(f, l, out_it);
+I inclusive_scan(ex, f, l, out_it);
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Exclusive scan}
+\begin{itemize}
+  \item \textgood{Exclusive scan} computes the cumulative sums excluding the current element.
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Generalized interface}:
+\begin{lstlisting}
+I exclusive_scan(f, l, out_it, init, binary_cobine_op);
+I exclusive_scan(ex, f, l, out_it, init, binary_cobine_op);
+\end{lstlisting}
+
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Combine operation} defaulted to \cppcode{std::plus<>}:
+\begin{lstlisting}
+I exclusive_scan(f, l, out_it, init);
+I exclusive_scan(ex, f, l, out_it, init);
+\end{lstlisting}
+
+  \mode<presentation>{\vfill\pause}
+  \item \textbad{No option} for defaulting \textmark{initial value}.
+\end{itemize}
+\end{frame}
