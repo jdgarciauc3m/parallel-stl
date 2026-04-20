@@ -18,7 +18,7 @@
     \begin{itemize}
       \item The binary operation \cppcode{op} must be associative.
       \item The prefix sum can be computed in parallel using a tree-based algorithm.
-      \item Partial operations are non-commutative, so the order of operations matters.
+      \item The prefix sum preserves operand order, so the order of operations matters when \cppcode{op} is non-commutative.
     \end{itemize}
 \end{itemize}
 \end{frame}
