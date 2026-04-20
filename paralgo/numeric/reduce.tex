@@ -1,0 +1,73 @@
+\subsection{Reduction operations}
+
+\begin{frame}[t,fragile]{Accumulation versus reduction}
+\begin{itemize}
+    \item \cppcode{std::accumulate(f, l, init, op)}
+      \begin{itemize}
+        \item Accumulates values left to right sequentially.
+        \item Uses input iterators.
+      \end{itemize}
+
+    \item \cppcode{std::reduce(ex, f, l, init, op)}
+      \begin{itemize}
+        \item Reduces values in any arbitrary order, possibly in parallel.
+        \item With an execution policy, uses forward iterators.
+        \item With an execution policy, binary operation \cppcode{op} must be associative and commutative.
+      \end{itemize}
+
+    \mode<presentation>{\vfill\pause}
+    \item \textmark{Consequences}:
+      \begin{itemize}
+        \item \cppcode{std::accumulate()} is not parallelizable.
+        \item \cppcode{std::reduce()} can be parallelized, but execution-policy overloads require stronger iterator and operation requirements.
+        \item \cppcode{std::reduce()} is not deterministic with non-associative or non-commutative operations.
+      \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Adding numbers}
+\begin{block}{Accumulation}
+\begin{lstlisting}
+auto add_seq(std::vector<int> const & vec) {
+    return std::accumulate(vec.begin(), vec.end(), 0);
+}
+\end{lstlisting}
+\end{block}
+
+\mode<presentation>{\vfill\pause}
+\begin{block}{Reduction}
+\begin{lstlisting}
+auto add_par(std::vector<int> const & vec) {
+    return std::reduce(std::execution::par, vec.begin(), vec.end(), 0);
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[t,fragile]{Adding squares of numbers}
+\begin{block}{Accumulation}
+\begin{lstlisting}
+auto add_squares_seq(std::vector<int> const & vec) {
+    return std::accumulate(vec.begin(), vec.end(), 0, [](int acc, int x) {
+        return acc + x*x;
+    });
+}
+\end{lstlisting}
+\end{block}
+
+\mode<presentation>{\vfill\pause}
+\begin{block}{Reduction}
+\begin{lstlisting}
+auto add_squares_par(std::vector<int> const & vec) {
+    return std::reduce(std::execution::par, vec.begin(), vec.end(), 0, [](int acc, int x) {
+        return acc + x*x;
+    });
+}
+\end{lstlisting}
+\end{block}
+
+\begin{itemize}
+  \item \textbad{Problem}: The binary operation is not associative, so the result may be non-deterministic.
+\end{itemize}
+
+\end{frame}
