@@ -50,3 +50,25 @@ int main() {
     \end{itemize}
 \end{itemize}
 \end{frame}
+
+\begin{frame}[t,fragile]{Parallel algorithms and exceptions}
+\begin{itemize}
+  \item If an exception is thrown by element access, predicate, or operation during the execution of a parallel algorithm, \cppcode{std::terminate()} is called.
+
+  \mode<presentation>{\vfill\pause}
+  \item This applies even with \cppcode{std::execution::seq} policy, which is not parallel.
+    \begin{itemize}
+      \item Does not apply to non \cppcode{std::execution} based algorithms.
+    \end{itemize}
+
+  \mode<presentation>{\vfill\pause}
+  \item An algorithm may still throw \cppcode{std::bad_alloc} if memory allocation fails, even when using a parallel execution policy.
+  
+ 
+  \mode<presentation>{\vfill\pause}
+  \item \textmark{Rationale}: Parallel algorithms may execute in multiple threads, and propagating exceptions across threads is complex and may lead to undefined behavior. 
+    \begin{itemize}
+      \item By calling \cppcode{std::terminate()}, the program is safely terminated without risking undefined behavior.
+    \end{itemize}
+\end{itemize}
+\end{frame}
