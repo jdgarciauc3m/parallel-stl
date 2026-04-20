@@ -66,9 +66,9 @@ int main() {
   
  
   \mode<presentation>{\vfill\pause}
-  \item \textmark{Rationale}: Parallel algorithms may execute in multiple threads, and propagating exceptions across threads is complex and may lead to undefined behavior. 
+  \item \textmark{Rationale}: Parallel algorithms may execute work on multiple threads or in vectorized/unsequenced contexts, and the execution-policy overloads do not support propagating exceptions from user code to the caller.
     \begin{itemize}
-      \item By calling \cppcode{std::terminate()}, the program is safely terminated without risking undefined behavior.
+      \item Calling \cppcode{std::terminate()} keeps the semantics simple for implementations and preserves optimization freedom for parallel and vectorized execution.
     \end{itemize}
 \end{itemize}
 \end{frame}
