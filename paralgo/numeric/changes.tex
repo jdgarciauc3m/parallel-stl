@@ -1,0 +1,30 @@
+\subsection{Differences with existing algorithms}
+
+\begin{frame}[t,fragile]{Changes in parallel numeric algorithms}
+\begin{itemize}
+    \item Parallel \textmark{numeric algorithms} support \textgood{execution policies}.
+    \item Some name changes to reflect different \textmark{semantics}.
+    \item Changes in iterator requirements: at least \textmark{forward iterators}.
+
+\mode<presentation>{\vfill\pause}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Old Interface} &  \textbf{New Interface} \\
+\hline
+\cppcode{std::iota()} & -- \\
+\hline
+\cppcode{std::accumulate()} & \cppcode{std::reduce()} \\
+\hline
+\cppcode{std::inner_product()} & \cppcode{std::transform_reduce()} \\
+\hline
+\cppcode{std::adjacent_difference()} & \cppcode{std::adjacent_difference()} \\
+\hline
+\cppcode{std::partial_sum()} & \cppcode{std::inclusive_scan()} \\
+& \cppcode{std::exclusive_scan()} \\
+\hline
+-- / -- & \cppcode{transform_inclusive_scan()} \\
+& \cppcode{transform_exclusive_scan()} \\
+\hline
+\end{tabular}
+\end{itemize}
+\end{frame}
