@@ -20,7 +20,7 @@
       \begin{itemize}
         \item \cppcode{std::accumulate()} is not parallelizable.
         \item \cppcode{std::reduce()} can be parallelized, but execution-policy overloads require stronger iterator and operation requirements.
-        \item \cppcode{std::reduce()} is not deterministic, with non-associative operations.
+        \item \cppcode{std::reduce()} is not deterministic with non-associative or non-commutative operations.
       \end{itemize}
 \end{itemize}
 \end{frame}
