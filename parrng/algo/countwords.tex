@@ -48,7 +48,7 @@
     \begin{itemize}
         \item Map: check for new words in pairs of characters.
           \begin{itemize}
-              \item Sequences: $(t_0, \ldots, t_{n-1})$ and $(t_1, \ldots, t_n)$.
+              \item Sequences: $(t_0, \ldots, t_{n-2})$ and $(t_1, \ldots, t_{n-1})$.
               \item Mapping: \cppcode{is_new_word(c1,c2)} applied to pairs of characters.
           \end{itemize}
         \item Reduce: \cppcode{std::plus} for adding results of the mapping.
