@@ -47,7 +47,7 @@ auto add_squares_par(std::vector<int> const & vec) {
 \end{block}
 
 \begin{itemize}
-  \item \textgood{Solution}: The new combination operation is now associative, so the result is deterministic and can be parallelized.
+  \item \textgood{Solution}: The new combination operation is now associative and commutative, so the result is deterministic and can be parallelized; the map operation should also be pure.
 \end{itemize}
 
 \end{frame}
