@@ -11,15 +11,15 @@
     \item \cppcode{std::reduce(ex, f, l, init, op)}
       \begin{itemize}
         \item Reduces values in any arbitrary order, possibly in parallel.
-        \item Uses forward iterators.
-        \item Binary operation \cppcode{op} must be associative and commutative.
+        \item With an execution policy, uses forward iterators.
+        \item With an execution policy, binary operation \cppcode{op} must be associative and commutative.
       \end{itemize}
 
     \mode<presentation>{\vfill\pause}
     \item \textmark{Consequences}:
       \begin{itemize}
         \item \cppcode{std::accumulate()} is not parallelizable.
-        \item \cppcode{std::reduce()} can be parallelized, but requires stronger iterator and operation requirements.
+        \item \cppcode{std::reduce()} can be parallelized, but execution-policy overloads require stronger iterator and operation requirements.
         \item \cppcode{std::reduce()} is not deterministic, with non-associative operations.
       \end{itemize}
 \end{itemize}
