@@ -8,7 +8,7 @@
   \item \textmark{Definition}: Given a sequence of values \cppcode{[x1, x2, ..., xn]} and a binary operation \cppcode{op}, the prefix sum of the sequence is defined as:
     \begin{itemize}
       \item \textgood{Inclusive scan}:\\
-      \cppcode{[x1, x1 op x2, x1 op (x2 op x3), ..., x1 op (x2 op ... op xn)]}
+      \cppcode{[x1, x1 op x2, ((x1 op x2) op x3), ..., ((x1 op x2) op ... op xn)]}
       \item \textgood{Exclusive scan}:\\
       \cppcode{[init, x1, (x1 op x2), ((x1 op x2) op x3), ..., ((x1 op x2) op ... op xn-1)]}
     \end{itemize}
