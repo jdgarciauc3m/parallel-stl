@@ -36,8 +36,8 @@ T transform_reduce(ex, f1, l1, f2, init, binary_comb_op, binary_map_op)
 \begin{lstlisting}
 auto add_squares_par(std::vector<int> const & vec) {
     return std::transform_reduce(std::execution::par, vec.begin(), vec.end(), 0, 
-    [](int acc, int x) {
-      return acc + x;
+    [](int a, int b) {
+      return a + b;
     },
     [](int x) {
       return x*x;
