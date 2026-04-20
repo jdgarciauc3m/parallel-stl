@@ -53,10 +53,10 @@ int main() {
 
 \begin{frame}[t,fragile]{Parallel algorithms and exceptions}
 \begin{itemize}
-  \item If an exception is thrown by element access, predicate, or operation during the execution of a parallel algorithm, \cppcode{std::terminate()} is called.
+  \item If an exception is thrown by element access, predicate, or operation during an algorithm invoked with a \cppcode{std::execution} policy, \cppcode{std::terminate()} is called.
 
   \mode<presentation>{\vfill\pause}
-  \item This applies even with \cppcode{std::execution::seq} policy, which is not parallel.
+  \item This includes \cppcode{std::execution::seq}, even though it is not parallel.
     \begin{itemize}
       \item Does not apply to non \cppcode{std::execution} based algorithms.
     \end{itemize}
