@@ -14,17 +14,17 @@
       \begin{itemize}
         \item \textgood{Unary map-reduce}: map a unary function and reduce with a binary operation.
 \begin{lstlisting}
-T transform_reduce(f, l, init, binary_comb_op, unary_map_op)    
-T transform_reduce(ex, f, l, init, binary_comb_op, unary_map_op)    
+T transform_reduce(f, l, init, binary_comb_op, unary_map_op);
+T transform_reduce(ex, f, l, init, binary_comb_op, unary_map_op);
 \end{lstlisting}
 
         \mode<presentation>{\vfill\pause}
         \item \textgood{Binary map-reduce}: map a binary function on pairs of elements and reduce with a binary operation.
 \begin{lstlisting}
-T transform_reduce(f1, l1, f2, init)
-T transform_reduce(ex, f1, l1, f2, init)
-T transform_reduce(f1, l1, f2, init, binary_comb_op, binary_map_op)
-T transform_reduce(ex, f1, l1, f2, init, binary_comb_op, binary_map_op) 
+T transform_reduce(f1, l1, f2, init);
+T transform_reduce(ex, f1, l1, f2, init);
+T transform_reduce(f1, l1, f2, init, binary_comb_op, binary_map_op);
+T transform_reduce(ex, f1, l1, f2, init, binary_comb_op, binary_map_op);
 \end{lstlisting}
       \end{itemize}
   \end{itemize}
