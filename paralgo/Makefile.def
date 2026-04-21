@@ -4,7 +4,6 @@ PARALGO_PARTS= \
 
 include $(PARALGO_DIR)/stl/Makefile.def
 include $(PARALGO_DIR)/exec/Makefile.def
-include $(PARALGO_DIR)/nonmod/Makefile.def
 include $(PARALGO_DIR)/numeric/Makefile.def
 
 GUIDE_PARTS += $(PARALGO_PARTS)
