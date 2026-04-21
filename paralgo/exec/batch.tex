@@ -19,7 +19,7 @@ UnaryOp batch(f, n, unary_op);
     \begin{itemize}
       \item \textgood{Execution policy} overloads available for both interfaces.
       \item Forward iterators instead of Input iterators.
-      \item Return type is \textgood{void} instead of the Unary function.
+      \item Return type changes: \cppinline{for_each} returns \textgood{void}, while \cppinline{for_each_n} returns \cppinline{ForwardIt} instead of the Unary function.
       \item No copies of original elements are made.
     \end{itemize}
 \end{itemize}
