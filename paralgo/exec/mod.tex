@@ -1,0 +1,24 @@
+\subsection{Availability of execution-policy overloads}
+
+\begin{frame}[t,fragile]{Modifying sequence algorithms with execution-policy overloads}
+\begin{itemize}
+  \item \cppcode{copy()}, \cppcode{copy_if()}, \cppcode{copy_n()}.
+  \item \cppcode{move()}.
+  \item \cppcode{swap_ranges()}.
+  \item \cppcode{replace()}, \cppcode{replace_if()}, \cppcode{replace_copy()}, \cppcode{replace_copy_if()}.
+  \item \cppcode{fill()}, \cppcode{fill_n()}, \cppcode{generate()}, \cppcode{generate_n()}.
+  \item \cppcode{remove()}, \cppcode{remove_if()}, \cppcode{remove_copy()}, \cppcode{remove_copy_if()}.
+  \item \cppcode{unique()}, \cppcode{unique_copy()}.
+  \item \cppcode{reverse()}, \cppcode{reverse_copy()}.
+  \item \cppcode{rotate()}, \cppcode{rotate_copy()}, \cppcode{shift_left()}, \cppcode{shift_right()}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Modifying sequence algorithms with no execution-policy overloads}
+\begin{itemize}
+  \item \cppcode{copy_backward()}.
+  \item \cppcode{move_backward()}.
+  \item \cppcode{shuffle()}, \cppcode{random_shuffle()} (legacy; removed in C++17).
+  \item \cppcode{sample()}.
+\end{itemize}
+\end{frame}
