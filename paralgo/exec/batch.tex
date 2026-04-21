@@ -7,11 +7,11 @@
     \mode<presentation>{\vfill\pause}
     \item Sequence defined by a pair of iterators \cppcode{[f, l)}.
 \begin{lstlisting}
-UnaryOp batch(f, l, unary_op);
+UnaryOp for_each(f, l, unary_op);
 \end{lstlisting}
     \item Sequence defined by an iterator \cppcode{f} and a count \cppcode{n}.
 \begin{lstlisting}
-UnaryOp batch(f, n, unary_op);
+Iterator for_each_n(f, n, unary_op);
 \end{lstlisting}
 
     \mode<presentation>{\vfill\pause}
