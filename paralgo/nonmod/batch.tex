@@ -47,7 +47,7 @@ ForwardIt for_each_n(ExecutionPolicy&& policy,
 
 
 \begin{frame}[t,fragile]{Applying batch operations}
-\begin{block}{Updating objects positions}
+\begin{block}{Updating object positions}
 \begin{lstlisting}
 void update_positions(std::vector<particle>& vp, double dt) {
      std::for_each(std::execution::par, vp.begin(), vp.end(), [dt](particle & p) {
