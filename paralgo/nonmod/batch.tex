@@ -1,0 +1,74 @@
+\subsection{Batch algorhtms}
+
+\begin{frame}[t,fragile]{Batch algorithms}
+\begin{itemize}
+  \item \textgood{Batch algorithms} apply a unary operation to each element in a sequence.
+  
+    \mode<presentation>{\vfill\pause}
+    \item Sequence defined by a pair of iterators \cppcode{[f, l)} and an output iterator \cppcode{out_it}.
+\begin{lstlisting}
+UnaryOp batch(f, l, out_it, unary_op);
+\end{lstlisting}
+    \item Sequence defined by an iterator \cppcode{f} and a count \cppcode{n} and an output iterator \cppcode{out_it}.
+\begin{lstlisting}
+UnaryOp batch(f, n, out_it, unary_op);
+\end{lstlisting}
+
+    \mode<presentation>{\vfill\pause}
+    \item \textmark{Differences} in \textemph{execution based} algorithms:
+    \begin{itemize}
+      \item \textgood{Execution policy} overloads available for both interfaces.
+      \item Forward iterators instead of Input iterators.
+      \item Return type is \textgood{void} instead of the Unary function.
+      \item No copies of original elements are made.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Batch parallel algorithms}
+  \begin{itemize}
+    \item Iterator pair batch parallel interface:
+\begin{lstlisting}
+template <class ExecutionPolicy, class ForwardIt, class UnaryFunc>
+void for_each(ExecutionPolicy&& policy,
+              ForwardIt first, ForwardIt last, UnaryFunc f );
+\end{lstlisting}
+
+    \mode<presentation>{\vfill\pause}
+    \item Iterator and size batch parallel interface:
+\begin{lstlisting}
+template<class ExecutionPolicy,
+          class ForwardIt, class Size, class UnaryFunc >
+ForwardIt for_each_n(ExecutionPolicy&& policy,
+                    ForwardIt first, Size n, UnaryFunc f );
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t,fragile]{Applying batch operations}
+\begin{block}{Updating objects positions}
+\begin{lstlisting}
+void update_positions(std::vector<particle>& vp, double dt) {
+    std::for_each(std::execution::par, vp.begin(), vp.end(), [dt](Particle& p) {
+        p.position += p.velocity * dt;
+    });
+}
+\end{lstlisting}
+\end{block}
+
+\mode<presentation>{\vfill\pause}
+\begin{block}{Risks of batch algorithms}
+\begin{lstlisting}[moredelim={[is][\color{red}]{@}{@}}]
+void print_max(std::vector<int> const & v) {
+    int max = std::numeric_limits<int>::min();
+    std::for_each(std::execution::par, v.begin(), v.end(), [@&max@](int x) {
+        if (x > @max@) {
+            @max@ = x;
+        }
+    });
+    std::println("Max = {}", max);
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
