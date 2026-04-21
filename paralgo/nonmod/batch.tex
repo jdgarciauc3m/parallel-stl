@@ -59,7 +59,7 @@ void update_positions(std::vector<particle>& vp, double dt) {
 
 \mode<presentation>{\vfill\pause}
 \begin{block}{Risks of batch algorithms}
-\begin{lstlisting}[moredelim={[is][\color{red}]{@}{@}}]
+\begin{lstlisting}
 void print_max(std::vector<int> const & v) {
     int max = std::numeric_limits<int>::min();
     std::for_each(std::execution::par, v.begin(), v.end(), [@&max@](int x) {
