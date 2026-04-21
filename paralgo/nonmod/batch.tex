@@ -50,7 +50,7 @@ ForwardIt for_each_n(ExecutionPolicy&& policy,
 \begin{block}{Updating objects positions}
 \begin{lstlisting}
 void update_positions(std::vector<particle>& vp, double dt) {
-    std::for_each(std::execution::par, vp.begin(), vp.end(), [dt](Particle& p) {
+     std::for_each(std::execution::par, vp.begin(), vp.end(), [dt](particle & p) {
         p.position += p.velocity * dt;
     });
 }
