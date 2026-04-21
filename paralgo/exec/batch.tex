@@ -19,7 +19,8 @@ Iterator for_each_n(f, n, unary_op);
     \begin{itemize}
       \item \textgood{Execution policy} overloads available for both interfaces.
       \item Forward iterators instead of Input iterators.
-      \item Return types differ: execution-policy \cppcode{for_each} returns \textgood{void}, while execution-policy \cppcode{for_each_n} returns \cppcode{ForwardIt}; \cppcode{for_each_n} already returns an iterator in the non-execution-policy overloads.
+      \item \cppcode{for_each} return type differs: execution-policy returns \textgood{void}.
+      \item \cppcode{for_each_n} return type differs: execution-policy returns \cppcode{ForwardIt}.
       \item No copies of original elements are made.
     \end{itemize}
 \end{itemize}
