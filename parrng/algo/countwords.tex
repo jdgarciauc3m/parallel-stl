@@ -1,5 +1,25 @@
 \subsection{Example: Counting words}
 
+\begin{frame}[t,fragile]{Counting words: problem and helper functions}
+    \begin{itemize}
+        \item Goal: count words in a text.
+        \item A new word starts when a letter is preceded by a non-letter.
+        \item The first character must be handled separately.
+    \end{itemize}
+
+\begin{block}{Helper functions}
+\begin{lstlisting}
+  bool is_letter(char c) {
+    return std::isalpha(static_cast<unsigned char>(c));
+  }
+
+  size_t is_new_word(char c1, char c2) {
+    return !is_letter(c1) && is_letter(c2);
+  }
+\end{lstlisting}
+\end{block}
+\end{frame}
+
 \begin{frame}[t,fragile]{Using an algorithm: the map-reduce approach}
     \begin{itemize}
         \item Map: check for new words in pairs of characters.
