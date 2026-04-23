@@ -5,9 +5,9 @@
   \item A range is any type that represents a sequence of elements.
 \begin{lstlisting}
 template <typename T>
-concept range = requires(T t) {
-  { t.begin() };
-  { t.end() };
+concept range = requires(T& t) {
+  { std::ranges::begin(t) };
+  { std::ranges::end(t) };
 };
 \end{lstlisting}
     \begin{itemize}
