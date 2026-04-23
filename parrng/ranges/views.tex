@@ -2,9 +2,9 @@
 
 \begin{frame}[t,fragile]{Views}
 \begin{itemize}
-  \item A view is a lightweight, non-owning range adaptor.
-  \item Views are used to create new ranges from existing ones, without copying the elements.
-  \item Views are typically implemented as lazy, meaning that they do not compute their elements until they are accessed.
+  \item A view is a lightweight range type, typically lazy and often non-owning.
+  \item Range adaptors such as \texttt{std::views::take} are used to create views from existing ranges, without copying the elements.
+  \item Views are typically lazy, meaning that they do not compute their elements until they are accessed.
 \end{itemize}
 
 \mode<presentation>{\vfill\pause}
