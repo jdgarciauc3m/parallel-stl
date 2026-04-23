@@ -1,0 +1,2 @@
+$(FINAL_PARRNG_RANGES_PDF): $(PARRNG_RANGES_PARTS) $(CONFIG_PARTS) | $(FINAL_DIR)
+	$(LATEXMK) -jobname=$(subst /,-,$(<D)) $(PARRNG_RANGES_DIR)/slides
