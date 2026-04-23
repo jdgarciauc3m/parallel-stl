@@ -13,7 +13,7 @@ concept range = requires(T& t) {
     \begin{itemize}
       \item \cppcode{[std::begin(t), std::end(t))} is a half-open range.
       \item Both \cppcode{std::begin(t)} and \cppcode{std::end(t)} are amortized constant time.
-      \item If the type of \cppcode{std::begin(t)} is a forward iterator, then \cppcode{[std::begin(t)} is equality preserving (i.e., multi-pass is allowed).
+      \item If the type of \cppcode{std::begin(t)} is a forward iterator, then \cppcode{[std::begin(t), std::end(t))} is equality preserving (i.e., multi-pass is allowed).
     \end{itemize}
 \end{itemize}
 \end{frame}
