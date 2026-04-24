@@ -59,9 +59,9 @@
 \begin{lstlisting}
   size_t count_ranges(std::string_view text) {
     if (text.empty()) { return 0; }
-    auto compute = std::ranges::views::zip(
-      text | std::ranges::views::take(std::ranges::size(text) - 1),
-      text | std::ranges::views::drop(1));
+    auto compute = std::views::zip(
+      text | std::views::take(std::ranges::size(text) - 1),
+      text | std::views::drop(1));
     auto result = std::ranges::count_if(compute, [](auto char_pair) {
       auto [c1, c2] = char_pair;
       return is_new_word(c1, c2);
