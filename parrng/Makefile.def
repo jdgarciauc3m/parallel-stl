@@ -2,6 +2,7 @@ PARRNG_DIR=parrng
 PARRNG_PARTS= \
 	$(PARRNG_DIR)/*.tex
 
+include $(PARRNG_DIR)/ranges/Makefile.def
 include $(PARRNG_DIR)/algo/Makefile.def
 
 GUIDE_PARTS += $(PARRNG_PARTS)

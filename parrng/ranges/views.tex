@@ -1,0 +1,91 @@
+\subsection{Views}
+
+\begin{frame}[t,fragile]{Views}
+\begin{itemize}
+  \item A view is a lightweight range type, typically lazy and often non-owning.
+  \item Range adaptors such as \cppcode{std::views::take} are used to create views from existing ranges, without copying the elements.
+  \item Views are typically lazy, meaning that they do not compute their elements until they are accessed.
+\end{itemize}
+
+\mode<presentation>{\vfill\pause}
+\begin{lstlisting}
+void f() {
+  std::vector<double> v = get_vector();
+
+  // Create a view and traverse it
+  auto v1 = std::views::take(v, 10);
+  for (auto const & x : v1) {
+    std::println("{}", x);
+  }
+
+  // Traverse a temporary view
+  for (auto const & x : std::views::take(v, 10)) {
+    std::println("{}", x);
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{Chaining views}
+\begin{itemize}
+  \item Views can be chained together to create more complex ranges.
+  \item The resulting range is still a view, and is still lazy.
+\end{itemize}
+
+\mode<presentation>{\vfill\pause}
+\begin{lstlisting}
+void f() {
+  std::vector<double> v = get_vector();
+  auto v1 = std::views::filter(v, [](double x) { return x > 0.0; });
+  auto v2 = std::views::transform(v1, [](double x) { return x * 2; });
+  auto v3 = std::views::take(v2, 10);
+  for (auto const & x : v3) {
+    std::println("{}", x);
+  }
+}
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[t,fragile]{Chaining and temporary views}
+\begin{itemize}
+  \item Views can be chained together even if some of them are temporary.
+  \item The resulting range is still a view, and is still lazy.
+\end{itemize}
+
+\mode<presentation>{\vfill\pause}
+\begin{lstlisting}
+void f() {
+  std::vector<double> v = get_vector();
+  auto v3 = std::views::take(
+    std::views::transform(
+        std::views::filter(v, 
+        [](double x) { return x > 0.0; }), 
+    [](double x) { return x * 2; }), 
+  10);
+  for (auto const & x : v3) {
+    std::println("{}", x);
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{Piping views}
+\begin{itemize}
+  \item Views can also be chained together using the pipe operator.
+  \item The resulting range is still a view, and is still lazy.
+\end{itemize}
+
+\mode<presentation>{\vfill\pause}
+\begin{lstlisting}
+void f() {
+  std::vector<double> v = get_vector();
+  auto v3 = v | std::views::filter([](double x) { return x > 0.0; }) 
+              | std::views::transform([](double x) { return x * 2; }) 
+              | std::views::take(10);
+  for (auto const & x : v3) {
+    std::println("{}", x);
+  }
+}
+\end{lstlisting}
+\end{frame}

@@ -1,0 +1,52 @@
+\subsection{Ranges}
+
+\begin{frame}[t,fragile]{Range}
+\begin{itemize}
+  \item A range is any type that represents a sequence of elements.
+\begin{lstlisting}
+template <typename T>
+concept range = requires(T& t) {
+  { std::ranges::begin(t) };
+  { std::ranges::end(t) };
+};
+\end{lstlisting}
+    \begin{itemize}
+      \item \cppcode{[std::ranges::begin(t), std::ranges::end(t))} is a half-open range.
+      \item \cppcode{std::ranges::begin(t)} and \cppcode{std::ranges::end(t)} must be valid expressions; their complexity depends on the range type.
+      \item If the type of \cppcode{std::ranges::begin(t)} is a forward iterator, then \cppcode{[std::ranges::begin(t), std::ranges::end(t))} is equality preserving (i.e., multi-pass is allowed).
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{A ranges taxonomy}
+\begin{itemize}
+  \item \cppcode{range}: Can be iterated from begin to end.
+  \item \cppcode{output_range}: Elements can be written to the range.
+  \item \cppcode{input_range}: Elements can be read from the range.
+  \item \cppcode{forward_range}: Elements can be read from the range multiple times.
+  \item \cppcode{bidirectional_range}: Elements can be read from the range in both directions.
+  \item \cppcode{random_access_range}: Elements can be read from the range in constant time.
+  \item \cppcode{contiguous_range}: All elements are stored contiguously in memory.
+  \item \cppcode{sized_range}: Range with constant-time size.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Range based algorithms}
+\begin{itemize}
+  \item Ranges are the basis for a new set of algorithms in the STL.
+  \item These algorithms take ranges as input and output, instead of pairs of iterators.
+  \item The new algorithms are designed to be more composable and easier to use than the old ones.
+\end{itemize}
+
+\mode<presentation>{\vfill\pause}
+\begin{lstlisting}
+void f() {
+  std::vector<double> v = get_vector();
+  std::ranges::transform(v, v.begin(), [](double x) { return x * 2; });
+  std::ranges::reverse(v);
+  if (auto it = std::ranges::find_if(v, [](double x) { return x > 0.0; }); it != v.end()) {
+    std::println("Found a positive number: {}", *it);
+  }
+}
+\end{lstlisting}
+\end{frame}

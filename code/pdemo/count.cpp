@@ -107,12 +107,12 @@ int main() {
   auto [time_ranges, result_ranges] = run_test(count_ranges, text);
   auto [time_pranges, result_pranges] = run_test(count_pranges, text);
 
-  std::println("Result: {}, Average time (classic stl): {}", result_classicstl,
-               time_classicstl / 1000000.0);
+  std::println("Result: {}, Average time (classic stl): {}, Speedup: {}", result_classicstl,
+               time_classicstl / 1000000.0, time_classic / time_classicstl);
   std::println("Result: {}, Average time (parstl): {}, Speedup: {}", result_parstl,
-               time_parstl / 1000000.0, time_classicstl / time_parstl);
+               time_parstl / 1000000.0, time_classic / time_parstl);
   std::println("Result: {}, Average time (ranges): {}, Speedup: {}", result_ranges,
-               time_ranges / 1000000.0, time_classicstl / time_ranges);
+               time_ranges / 1000000.0, time_classic / time_ranges);
   std::println("Result: {}, Average time (pranges): {}, Speedup: {}", result_pranges,
-               time_pranges / 1000000.0, time_classicstl / time_pranges);
+               time_pranges / 1000000.0, time_classic / time_pranges);
 }
